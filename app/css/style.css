@@ -1,0 +1,75 @@
+
+#calc-content-okatana,
+#table-content-okatana{
+  margin-top: 1%;
+  margin-left:1%;
+  padding:20px;
+  border: #94acba solid 1px;
+  border-radius: 10px;
+
+}
+
+#premium-content-okatana>div{
+  margin-top:4%;
+  padding:20px;
+  border: #e5e5e5 solid 1px;
+  border-radius: 10px;
+  color:white;
+  font-weight: bold;
+  background-color: #960835;
+  min-height: 90px;
+}
+
+#calc-content-okatana>div>div{
+  border-bottom: #e5e5e5 dotted  1px;
+  /*margin-bottom: 5px;
+  padding-top:5px;
+  padding-bottom:5px;*/
+}
+
+#calc-content-okatana div div:last-child{
+  border-bottom: none;
+  margin-bottom: 5px;
+}
+
+#calc-content-okatana div.formElement {
+  display: block;
+}
+.no-border{
+  border:none;
+}
+.formElement .label{
+  white-space: normal;
+  background-color: rgb(91,192,222);
+}
+.label-info{
+  padding: .4em .12em .6em;
+  padding-right: 5px;
+  padding-left: 5px;
+  font-size: 85%;
+}
+#coeff_table tr:last-child{
+  color:white;
+  font-weight: bold;
+  background-color: #960835;
+  width: 60%;
+
+}
+#coeff_table tr:last-child td:first-child,
+.col-lg-1{
+  border-right: solid .1px white;
+}
+.table > tbody > tr > td:first-child{
+  border-right: solid .1px #e5e5e5;
+}
+.mandatory-parameter{
+  /*background:rgb(91, 192, 222)  url("../image/mandatory-parameter3.png") repeat-y;*/
+}
+.table > tbody > tr > td{
+  padding: 2px !important;
+}
+.no-padding-left {
+  padding-left: 0 !important;
+}
+
+
