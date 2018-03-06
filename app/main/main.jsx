@@ -2,10 +2,10 @@ require('../css/style.css')
 
 const React = require('react')
 const ReactDOM = require ('react-dom')
-const Content = require('./content.jsx')
+const Tests = require('../components/test/Tests.jsx')
 
 
 ReactDOM.render(
-    <Content />,
+    <Tests />,
     document.getElementById('content')
 )
