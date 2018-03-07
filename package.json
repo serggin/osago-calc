@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --mode development"
+    "start": "webpack-dev-server --mode development --config ./webpack.dev.config.js",
+    "dev": "webpack --mode development --display-error-details --config ./webpack.dev.config.js",
+    "build": "webpack --mode production"
   },
   "dependencies": {
     "css-loader": "^0.28.10",
