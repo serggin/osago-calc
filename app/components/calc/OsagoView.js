@@ -30,12 +30,12 @@ class OsagoView {
         this.states.typeTC.selected = params.typeTC;
         this.states.owner.buttonChecked = params.owner;
         this.states.registration.buttonChecked = params.registration;
-        this.states.trailer.checked = params.trailer;
+        this.states.trailer.selected = params.trailer;
 
-        this.states.limit.checked = params.limit;
+        this.states.limit.selected = params.limit;
 
         this.states.region.region = params.regions;
-        this.states.crime.checked = params.crime;
+        this.states.crime.selected = params.crime;
 
 //    console.log('this.states=');
 //    console.dir(this.states);
@@ -163,13 +163,17 @@ class OsagoView {
     getInitialStates() {
         return {
             owner: {buttonChecked: "fiz"},
-          typeTC:{selected: 'tc22'},
+            typeTC:{selected: "tc22"},
             registration: {buttonChecked: "regRu"},
-            trailer: {checked: false},
-            limit: {checked: false},
+            trailer: {selected: false, enabled:false},
+            powerTC:{selected: 'p70'},
+            period: {selected:"t8"},
+            city:{enabled: 'false'},
+            term:{enabled:'false'},
+            limit: {selected: false},
             region: {region: null},
-            crime: {checked: false},
-            kbm:{selected:false},
+            crime: {selected: true},
+            kbm:{selected: "kbm3"},
 
         }
     }
@@ -197,8 +201,12 @@ class OsagoView {
         switch (name) {
             case "driving_experience":
                 var obj = this.model.getDriving_experience();
+
                 for (var key in obj) {
                     options.push({value: key, label: obj[key].label, selected: false});
+                  console.log('*********************driving_experience');
+                  console.dir(options);
+
                 }
                 break;
             case "typeTC":

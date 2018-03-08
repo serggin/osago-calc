@@ -6,11 +6,11 @@ class CheckBox extends BaseElement{
     constructor(props){
         super(props);
         this.handleCheckbox = this.handleCheckbox.bind(this)
-        this.state = {checked:props.checked}
+        this.state = {checked:props.selected}
 //    console.log('CheckBox4 name='+props.name+' checked='+props.checked);
     }
     getExcludeProps() {
-        return ['assigned', 'buttons', 'wrapperProps','formlabel','divlabelProps' ];
+        return ['assigned', 'buttons', 'wrapperProps','formlabel','divlabelProps','enabled' ];
     }
 
     handleCheckbox(event){
@@ -25,16 +25,27 @@ class CheckBox extends BaseElement{
         this.setState({checked:newProps.checked});
     }
     render(){
+        console.log('/*/*/*/*/ checkbox '+this.props.name);
         return <span>
-      <input type="checkbox" {...super.sanitizeProps()} value={this.state.checked}  checked={this.state.checked} onChange={this.handleCheckbox} />
+      <input type="checkbox" {...super.sanitizeProps()}
+             //value={!!this.state.checked}
+             value={this.state.checked ? 1 : 0}
+             checked={this.state.checked}
+             onChange={this.handleCheckbox}
+             disabled={!this.props.enabled}
+ /*            disabled={this.props.enabled ? undefined : "disabled"} */
+      />
             {this.props.label}
     </span>
     }
 
 }
 CheckBox.propTypes = {
-    assigned: PropTypes.func
+    assigned: PropTypes.func,
+  selected: PropTypes.bool
+}
+CheckBox.defaultProps = {
+  selected: false
 
 }
-
 module.exports = CheckBox

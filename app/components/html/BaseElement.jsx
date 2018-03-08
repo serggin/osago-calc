@@ -1,8 +1,10 @@
 const React = require('react')
+const PropTypes = require('prop-types')
 
 class BaseElement extends React.Component {
     constructor(props) {
         super(props);
+
     }
     sanitizeProps() {
         var exclude = this.getExcludeProps();
@@ -19,9 +21,17 @@ class BaseElement extends React.Component {
 //    console.log("getExcludeProps(): BaseElement-"+this.getName());
         return [];
     }
-    /*  getName() {
-     return "BaseElement";
-     }*/
+
+
 }
-//window.BaseElement = BaseElement;
+BaseElement.propTypes = {
+  enabled: PropTypes.bool
+}
+
+BaseElement.defaultProps = {
+  enabled: true
+
+}
+
+
 module.exports = BaseElement

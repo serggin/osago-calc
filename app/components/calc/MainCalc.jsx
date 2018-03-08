@@ -18,7 +18,7 @@ class MainCalc extends React.Component {
     this.view = new OsagoView(this.model, this.controller);
   }
 
-  getInitialStates() {
+/*  getInitialStates() {
     return {
       owner: {buttonChecked: "fiz"},
       registration: {buttonChecked: "regRu"},
@@ -29,7 +29,7 @@ class MainCalc extends React.Component {
       kbm:{selected:false},
 
     }
-  }
+  }*/
   /**
    * Проверить готовность компонентов интерфейса и связать контроллер с собой
    */

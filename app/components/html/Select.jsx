@@ -8,13 +8,16 @@ class Select extends BaseElement {
         this.handleChange = this.handleChange.bind(this);
 
         if(props.selected){
-          for (var i=0; i<props.options.length; i++) {
+/*          for (var i=0; i<props.options.length; i++) {
               if(props.options[i].value===props.selected){
-                props.options[i].selectedIndex = i;
-                break;
-              }
-          }
-          this.state = {selected: props.selected}
+//                props.options[i].selectedIndex = i;
+                props.options[i].selected = true;
+//                break;
+              } else
+                props.options[i].selected = false;
+          }*/
+
+           this.state = {selected: props.selected}
         }else{
           var selected = '';
           props.options.map((option)=>{
@@ -34,7 +37,7 @@ class Select extends BaseElement {
         }
     }
     getExcludeProps() {
-        return ['assigned', 'options'];
+        return ['assigned', 'options','enabled'];
     }
     componentWillReceiveProps(newProps) {
 //    console.log("componentWillReceiveProps() name="+newProps.name);
@@ -72,10 +75,13 @@ class Select extends BaseElement {
          {this.state.selected=='' && this.props.options.length>1 ?
          т.е. если только 1 опция, то placeholder не ставится!
          */
+      console.log('/*/*/*/*/ select '+this.props.name);
 
         return <select {...super.sanitizeProps()}
                        value={this.state.selected}
-                       onChange={this.handleChange}>
+                       onChange={this.handleChange}
+                       disabled={!this.props.enabled ? null : 'disabled'}
+        >
             {this.state.selected=='' && this.props.options.length>1 ?
                 <option value="" disabled hidden>-- { this.props.placeholder ? this.props.placeholder : 'Сделайте выбор' }--</option>:''
             }

@@ -37,7 +37,7 @@ FormCheckbox1.propTypes = {
     labelProps: PropTypes.object,
     divlabelProps: PropTypes.object,
 //    orientation: PropTypes.string,
-    disabled: PropTypes.string,
+ //   disabled: PropTypes.string,
 }
 FormCheckbox1.defaultProps = {
     wrapperProps: {},

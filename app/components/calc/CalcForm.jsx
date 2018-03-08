@@ -5,6 +5,7 @@ const FormSelect = require('../form/FormSelect.jsx')
 const FormCheckbox1 = require('../form/FormCheckbox1.jsx')
 
 
+
 class CalcForm extends React.Component {
   constructor(props) {
     super(props);
@@ -72,33 +73,39 @@ class CalcForm extends React.Component {
           <FormCheckbox1 name="trailer" formlabel="ТС с прицепом"
                           id="trailer"
                           labelProps={{className: "col-lg-12 label label-info"}} label="Да, есть прицеп"
-                          checked={this.state.trailer.checked}
+                         selected={this.state.trailer.selected}
+                         // enabled2={this.state.trailer.enabled}
+                         enabled={false}
                           assigned={(v)=>this.assignedHandler('trailer', v)}/>
 
           <FormSelect name="powerTC" formlabel="Мощность двигателя (л.с.)"
                        labelProps={{className: "col-lg-12 label label-info"}}
                        options={this.getOptions("powerTC")}
                        placeholder="Выберите мощность ТС"
-                       assigned={(v)=>this.assignedHandler('powerTC', v)}/>
+                       assigned={(v)=>this.assignedHandler('powerTC', v)}
+                      selected={this.state.powerTC.selected}/>
 
           <FormSelect name="term" formlabel="Срок договора"
                        labelProps={{className: "col-lg-12 label label-info"}}
                        options={this.getOptions("term")}
                        placeholder="Выберите срок договора"
-                       assigned={(v)=>this.assignedHandler('term', v)}/>
+                       assigned={(v)=>this.assignedHandler('term', v)}
+                      enabled={this.state.term.enabled} />
 
           <FormSelect id="period" name="period" formlabel="Период использования ТС"
                        labelProps={{className: "col-lg-12 label label-info"}}
                        options={this.getOptions("period")}
                        placeholder="Выберите период использования"
-                       assigned={(v)=>this.assignedHandler('period', v)}/>
+                       assigned={(v)=>this.assignedHandler('period', v)}
+                      selected={this.state.period.selected}/>
 
 
           <FormSelect id="kbm" name="kbm" formlabel="КБМ"
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                        options={this.getOptions("kbm")}
                        placeholder="Выберите КБМ"
-                       assigned={(v)=>this.assignedHandler('kbm', v)}/>
+                       assigned={(v)=>this.assignedHandler('kbm', v)}
+                      selected={this.state.kbm.selected}/>
 
           <FormSelect id="regions" name="regions" formlabel="Регион"
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
@@ -110,20 +117,21 @@ class CalcForm extends React.Component {
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                        options={this.getOptions("city", this.state.region.region)}
                        placeholder="Выберите город"
-                       assigned={(v)=>this.assignedHandler('city', v)}/>
+                       assigned={(v)=>this.assignedHandler('city', v)}
+                       enabled={this.state.city.enabled} />
 
           <FormCheckbox1 name="crime" formlabel="Имеются грубые нарушения условий страхования"
                           id="crime"
                           labelProps={{className: "col-lg-12 label label-info"}}
                           label="Да, имеются грубые нарушения условий страхования"
-                          checked={this.state.crime.checked}
+                         selected={this.state.crime.selected}
                           assigned={(v)=>this.assignedHandler('crime', v)}/>
 
           <FormCheckbox1 name="limit" formlabel="Количество водителей ограничено"
                           id="limit"
                           labelProps={{className: "col-lg-12 label label-info"}}
                           label="Нет, не ограничено"
-                          checked={this.state.limit.checked}
+                          selected={this.state.limit.selected}
                           assigned={(v)=>this.assignedHandler('limit', v)}/>
 
           <FormSelect id="driving_experience" name="driving_experience" formlabel="Минимальный возраст и водительский стаж лиц, допущенных к управлению ТС"

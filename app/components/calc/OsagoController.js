@@ -29,7 +29,7 @@ class OsagoController {
         return {
           owner: "fiz",
           registration: "regRu",
-          typyTC: null,
+          typyTC: "tc31",
           trailer: false,
           powerTC: null,
           term: 't12',
@@ -38,7 +38,7 @@ class OsagoController {
           regions: null,
           city: null,
           crime: false,
-          limit: false,
+          limit: true,
           driving_experience: null,
 
           fixedTerm: 't12',   //фиксированный срок договора: =null => выводим список;
@@ -135,14 +135,15 @@ class OsagoController {
         }
         if (this.params.yurPeriod === true) {
             this.params.limit = true;
-            this.view.states.limit.disabled = 'disabled';
+          //  this.view.states.limit.disabled = 'disabled';
         }
         if (this.params.owner == 'fiz') {
 
             if (this.params.registration == 'regFo') {
                 this.view.states.limit.disabled = 'disabled';
+             //   this.view.states.limit.checked=false;
             } else {
-                this.view.states.limit.disabled = null;
+            //    this.view.states.limit.disabled = null;
             }
         }
         this.params.trailer = null;
@@ -152,11 +153,11 @@ class OsagoController {
                 this.view.states.trailer.disabled = 'disabled';
             }
         }
-        document.getElementById("kbm").disabled = false;
+        //document.getElementById("kbm").disabled = false;
 
         if (this.params.registration !== 'regRu') {
             this.params.kbm = null;
-            document.getElementById("kbm").disabled = true;
+         //   document.getElementById("kbm").disabled = true;
             if (this.params.typeTC != 'tc21' || this.params.typeTC != 'tc22' || this.params.typeTC != 'tc23') {
                 this.view.states.kbm = '1';
             }
@@ -319,27 +320,27 @@ class OsagoController {
                     de = 1;
                 } else {
                     de = null;
-                    document.getElementById('driving_experience').disabled = true;
+               //     document.getElementById('driving_experience').disabled = true;
                 }
             }
         } else {
-            document.getElementById('driving_experience').disabled = false;
+          //  document.getElementById('driving_experience').disabled = false;
 
             /* if(this.driving_experience.coeff && (this.params.typeTC !='tc21' || this.params.typeTC !='tc22' || this.params.typeTC !='tc23')){
              de=1.7;
              }*/
             de = this.driving_experience.coeff;
             if (this.params.limit == false) {
-                document.getElementById('driving_experience').disabled = false;
+             //   document.getElementById('driving_experience').disabled = false;
                 if (this.params.typeTC == 'tc22' || this.params.typeTC == 'tc23') {
                     de = this.driving_experience.coeff;
                 } else {
                     de = 1.7;
-                    document.getElementById('driving_experience').disabled = true;
+              //      document.getElementById('driving_experience').disabled = false;
                 }
             } else {
                 de = null;
-                document.getElementById('driving_experience').disabled = true;
+             //   document.getElementById('driving_experience').disabled = false;
             }
 
         }
@@ -350,8 +351,8 @@ class OsagoController {
 
     getTerritory() {
         var factor_terr = null;
-        document.getElementById('regions').disabled = false;
-        document.getElementById('city').disabled = false;
+        //document.getElementById('regions').disabled = false;
+       // document.getElementById('city').disabled = false;
         if (this.params.registration === "regRu") {
             var region = this.params.regions ? this.model.getRegions(this.params.regions) : null;
             if (region) {
@@ -363,15 +364,15 @@ class OsagoController {
             }
         } else if (this.params.registration == "regFo") {
             //Метод.пособие, стр.6 : При обязательном страховании ответственности владельцев транспортных средств, зарегистрированных в иностранных государствах и временно используемых на территории Российской Федерации, КТ = 1,7.
-            document.getElementById('regions').disabled = true;
-            document.getElementById('city').disabled = true;
+           // document.getElementById('regions').disabled = true;
+           // document.getElementById('city').disabled = true;
             factor_terr = 1.7;
 
         } else {
             //Метод.пособие, стр.6 :КТ НЕ ПРИМЕНЯЕТСЯ при страховании гражданской ответственности владельцев транспортных средств на срок следования к месту регистрации.
             factor_terr = null;
-            document.getElementById('regions').disabled = true;
-            document.getElementById('city').disabled = true;
+            //document.getElementById('regions').disabled = true;
+           // document.getElementById('city').disabled = true;
         }
 
         return factor_terr;
@@ -415,10 +416,10 @@ class OsagoController {
     }
 
     getPeriod() {
-        document.getElementById("period").disabled = false;
+        //document.getElementById("period").disabled = false;
         if (this.params.registration == "regNo" ||
             this.params.registration == "regFo") {
-            document.getElementById("period").disabled = true;
+           // document.getElementById("period").disabled = true;
             return null;
         }
 
