@@ -14,8 +14,8 @@ class OsagoModel {
     this.period = baseCoeff.period;
     this.kbm = baseCoeff.kbm;
     this.driving_experience = baseCoeff.driving_experience;
-    console.log("OsagoModel load() typeTC=");
-    console.dir(this.typeTC);
+//    console.log("OsagoModel load() typeTC=");
+//    console.dir(this.typeTC);
     //....
   }
 

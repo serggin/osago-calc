@@ -196,8 +196,8 @@ class OsagoView {
                 break;
             case "typeTC":
                 var obj = this.model.getTypeTC();
-              console.log("OsagoView. getOptions() typeTC OBJ =");
-              console.dir(obj);
+             /* console.log("OsagoView. getOptions() typeTC OBJ =");
+              console.dir(obj);*/
                 for (var key in obj) {
                     if (this.params.owner==='yur'){
                         if(key==='tc22');
@@ -230,7 +230,7 @@ class OsagoView {
                 break;
             case "term":
 
-                console.log("OsagoView.getOptions term this.params.fixedTerm=" + this.params.fixedTerm);
+              /*  console.log("OsagoView.getOptions term this.params.fixedTerm=" + this.params.fixedTerm);*/
                 var obj = this.model.getTerm();
                 if (this.params.fixedTerm) {  //это key или null
                     //для фиксированного key формируем единствееную опцию
@@ -258,12 +258,12 @@ class OsagoView {
                 if (this.params.yurPeriod) {
                     //удалить из массива лишние периоды для юр лиц
                     options = options.slice(3);
-                    console.log(" options period");
-                    console.dir(options);
+                  /*  console.log(" options period");
+                    console.dir(options);*/
                 }
 
-                console.log("OsagoView. getOptions() period **************************");
-                console.dir(options);
+              /*  console.log("OsagoView. getOptions() period **************************");
+                console.dir(options);*/
 
                 break;
 
@@ -276,8 +276,8 @@ class OsagoView {
 
             case "city":
                 var obj = this.model.getCity(parameter);
-                console.log('OsagoView.getOptions name=city, parameter=' + parameter);
-                console.log(obj);
+               /* console.log('OsagoView.getOptions name=city, parameter=' + parameter);
+                console.log(obj);*/
                 for (var key in obj) {
                     options.push({value: key, label: key, selected: false});
                 }

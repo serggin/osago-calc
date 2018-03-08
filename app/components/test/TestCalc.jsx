@@ -1,15 +1,17 @@
 const React = require('react')
 const RadioGroup = require('../html/RadioGroup.jsx')
 const CalcForm = require('../calc/CalcForm.jsx')
+const CalcTable = require('../calc/CalcTable.jsx')
 const OsagoModel = require('../calc/OsagoModel.js')
 const OsagoController = require('../calc/OsagoController.js')
 const OsagoView = require('../calc/OsagoView.js')
+const OsagoPremium = require('../calc/OsagoPremium.jsx')
 
 class TestCalc extends React.Component {
   constructor(props) {
     super(props);
     this.radioGroupHandler = this.radioGroupHandler.bind(this)
-    this.state = {which: "form"};
+    this.state = {which: "table"};
 
     this.model = new OsagoModel();
     this.controller = new OsagoController(this.model);
@@ -17,8 +19,8 @@ class TestCalc extends React.Component {
   }
   getButtons() {
     return [
-      {value: "form", label: "CalcForm", checked: true},
-      {value: "table", label: "CalcTable", checked: false},
+      {value: "form", label: "CalcForm", checked: false},
+      {value: "table", label: "CalcTable", checked: true},
       {value: "premium", label: "OsagoPremium", checked: false},
     ];
   }
@@ -58,7 +60,10 @@ class TestCalc extends React.Component {
                   ref={(element)=>{this.calcForm = element; this.checkReady()}}/>
             </div>
             <div style={{display: this.state.which=='table' ? 'block' : 'none'}}>
-              Calc Table
+              <CalcTable/>
+            </div>
+            <div style={{display: this.state.which=='premium' ? 'block' : 'none'}}>
+              <OsagoPremium/>
             </div>
           </div>
         </div>
