@@ -16,6 +16,7 @@ class OsagoController {
      * @param view
      */
     setView(view) {
+        console.log("OsagoController.setView()");
         this.view = view;
         this.factors = this.getDefaultFactors();
         this.calculate();
@@ -26,21 +27,22 @@ class OsagoController {
      */
     getDefaultParams() {
         return {
-            city: null,
-            crime: false,
-            fixedTerm: 't12',   //фиксированный срок договора: =null => выводим список;
+          owner: "fiz",
+          registration: "regRu",
+          typyTC: null,
+          trailer: false,
+          powerTC: null,
+          term: 't12',
+          period: null,
+          kbm: null,
+          regions: null,
+          city: null,
+          crime: false,
+          limit: false,
+          driving_experience: null,
+
+          fixedTerm: 't12',   //фиксированный срок договора: =null => выводим список;
                                 // =key in model.getTerm() => выводим только эту опцию
-            kbm: null,
-            limit: false,
-            owner: "fiz",
-            period: null,
-            powerTC: null,
-            regions: null,
-            registration: "regRu",
-            term: 't12',
-            trailer: false,
-            typeTC: null,
-            driving_experience: null,
         }
     }
 
@@ -103,15 +105,15 @@ class OsagoController {
     handleDependences() {
         this.handleRegistrationDependencies();
         this.handleOwnerDepencies();
-        rhis.handleTypeTCDepencies();
+        this.handleTypeTCDepencies();
     }
     handleTypeTCDepencies(){
         if (this.params.typeTC == 'tc21' ||
             this.params.typeTC == 'tc22' ||
             this.params.typeTC == 'tc23') {
-            this.params.powerTC.disabled = 'true';
+//            this.params.powerTC.disabled = 'true';
         }else{
-            this.params.powerTC.disabled = null;
+//            this.params.powerTC.disabled = null;
         }
     }
 

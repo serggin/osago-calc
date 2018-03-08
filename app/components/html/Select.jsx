@@ -6,12 +6,24 @@ class Select extends BaseElement {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        var selected = '';
-        props.options.map((option)=>{
+
+        if(props.selected){
+          for (var i=0; i<props.options.length; i++) {
+              if(props.options[i].value===props.selected){
+                props.options[i].selectedIndex = i;
+                break;
+              }
+          }
+          this.state = {selected: props.selected}
+        }else{
+          var selected = '';
+          props.options.map((option)=>{
             if (option.selected)
-                selected = option.value;
-        });
-        this.state = {selected: selected}
+              selected = option.value;
+          });
+          this.state = {selected: selected}
+        }
+
     }
     handleChange(event){
         this.setState({
@@ -75,6 +87,10 @@ class Select extends BaseElement {
 }
 Select.propTypes = {
     assigned: PropTypes.func,
-    options: PropTypes.array
+    options: PropTypes.array,
+  selected:PropTypes.string
+}
+Select.defaultProps = {
+  selected: null
 }
 module.exports = Select

@@ -1,3 +1,8 @@
+const React = require('react')
+const OsagoPremium = require('../calc/OsagoPremium.jsx')
+const CalcForm = require('../calc/CalcForm.jsx')
+const CalcTable = require('../calc/CalcTable.jsx')
+
 class OsagoView {
     constructor(model, controller) {
         this.model = model;
@@ -22,6 +27,7 @@ class OsagoView {
         console.dir(factors);
         this.params = params;
 
+        this.states.typeTC.selected = params.typeTC;
         this.states.owner.buttonChecked = params.owner;
         this.states.registration.buttonChecked = params.registration;
         this.states.trailer.checked = params.trailer;
@@ -36,8 +42,8 @@ class OsagoView {
         this.calcForm.setStates(this.states); // обновить форму
         this.calcTable.setFactors(factors);   // обновить таблицу
 
-        this.displayPremium.setPremium(premium);
-        this.setRequestValues(params, factors, premium);
+        this.osagoPremium.setPremium(premium);
+//        this.setRequestValues(params, factors, premium);
         //$('input[name="insurance_premium"]').val(premium);
         //(params.owner == 'fiz') ?
     }
@@ -157,6 +163,7 @@ class OsagoView {
     getInitialStates() {
         return {
             owner: {buttonChecked: "fiz"},
+          typeTC:{selected: 'tc22'},
             registration: {buttonChecked: "regRu"},
             trailer: {checked: false},
             limit: {checked: false},
@@ -295,54 +302,39 @@ class OsagoView {
      * Проверить готовность компонентов интерфейса и связать контроллер с собой
      */
     checkReady() {
-        if (this.calcForm && this.calcTable && this.displayPremium)
+        if (this.calcForm && this.calcTable && this.osagoPremium)
             this.controller.setView(this);
     }
 
-    render() {
-//    var getRef = function(element){this.calcForm = element}.bind(this);
-        ReactDOM.render(
-            React.createElement(
-                CalcForm,
-                {
-                    view: this,
-                    states: this.getInitialStates(),
-                    ref: function (element) {
-                        this.calcForm = element;
-                        this.checkReady()
-                    }.bind(this)
-//              ref: "calcForm"
-                }
-            ),
-            document.getElementById('calc-content-okatana')
-        );
-        ReactDOM.render(
-            React.createElement(
-                CalcTable5,
-                {
-                    //             view: this,
-                    ref: function (element) {
-                        this.calcTable = element;
-                        this.checkReady()
-                    }.bind(this)
-                }
-            ),
-            document.getElementById('table-content-okatana')
-        );
+  render() {
+    return (
+        <div>
+          <div id="calc-content" className="col-lg-5">
+            <CalcForm     view={this}
+                          states={this.getInitialStates()}
+                          ref={(element)=>{this.calcForm = element; this.checkReady()}}/>
 
-        ReactDOM.render(
-            React.createElement(
-                OsagoPremium5,
-                {
-                    ref: function (element) {
-                        this.displayPremium = element;
-                        this.checkReady()
-                    }.bind(this)
-                }
-            ),
-            document.getElementById('premium-content-okatana')
-        );
-    }
+          </div>
+          <div  className="col-lg-3">
+            <div id="premium-content">
+              <OsagoPremium ref={(element)=>{this.osagoPremium = element; this.checkReady()}}/>
+
+            </div>
+            <div id="table-content">
+              <CalcTable ref={(element)=>{this.calcTable = element; this.checkReady()}}/>
+            </div>
+            <div id="zayavka-content">
+
+            </div>
+          </div>
+
+        </div>
+
+    )
+  }
+
+
+
 
 
 }
