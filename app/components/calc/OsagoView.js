@@ -21,10 +21,10 @@ class OsagoView {
     display(params, factors, premium) {
         // this.premium = premium;
 
-        console.log('OsagoView5.display: params=');
+       /* console.log('OsagoView5.display: params=');
         console.dir(params);
         console.log('OsagoView5.display: factors=');
-        console.dir(factors);
+        console.dir(factors);*/
         this.params = params;
 
         this.states.typeTC.selected = params.typeTC;
@@ -37,8 +37,9 @@ class OsagoView {
         this.states.region.region = params.regions;
         this.states.crime.selected = params.crime;
 
-//    console.log('this.states=');
-//    console.dir(this.states);
+        this.displayDependencies();
+    console.log('this.states=');
+    console.dir(this.states);
         this.calcForm.setStates(this.states); // обновить форму
         this.calcTable.setFactors(factors);   // обновить таблицу
 
@@ -46,6 +47,49 @@ class OsagoView {
 //        this.setRequestValues(params, factors, premium);
         //$('input[name="insurance_premium"]').val(premium);
         //(params.owner == 'fiz') ?
+    }
+
+    displayDependencies(){
+      console.log('------params');
+        console.dir(this.params);
+        if(this.params.regions){
+           this.states.city.enabled =  true;
+        }
+
+        //прицеп не учитывается для физ лица тип ТС=В
+      var typeTC = this.params.typeTC;
+      if(this.params.owner=='fiz' && (typeTC=='tc22' || typeTC == 'tc23'))
+        this.states.trailer.enabled = false;
+      else
+        this.states.trailer.enabled = true;
+
+      //нет лимита на доступ лиц
+      if(this.params.limit)
+        this.states.driving_experience.enabled = false;
+      else
+        this.states.driving_experience.enabled = true;
+      if(this.params.owner=='yur'){
+        this.states.limit.enabled = false;
+        this.states.driving_experience.enabled = false;
+      }else{
+        this.states.limit.enabled = true;
+        this.states.driving_experience.enabled = true;
+      }
+
+      //Cледует к месту регистрации
+      if(this.params.registration=='regNo'){
+        this.states.term.enabled = false;
+        this.states.period.enabled = false;
+        this.states.kbm.enabled = false;
+        this.states.regions.enabled = false;
+        this.states.crime.enabled = false;
+      }else{
+        this.states.term.enabled = true;
+        this.states.period.enabled = true;
+        this.states.kbm.enabled = true;
+        this.states.regions.enabled = true;
+        this.states.crime.enabled = true;
+      }
     }
 
     setRequestValues(params, factors, premium) {
@@ -168,11 +212,13 @@ class OsagoView {
             trailer: {selected: false, enabled:false},
             powerTC:{selected: 'p70'},
             period: {selected:"t8"},
-            city:{enabled: 'false'},
+          regions:{enabled: true},
+            city:{enabled: false},
             term:{enabled:'false'},
             limit: {selected: false},
+          driving_experience:{enabled:true},
             region: {region: null},
-            crime: {selected: true},
+            crime: {selected: null, },
             kbm:{selected: "kbm3"},
 
         }
@@ -184,7 +230,7 @@ class OsagoView {
      * @param value
      */
     assign(key, value) {
-        console.log("OsagoView assign() key=" + key + ", value=" + value);
+        //console.log("OsagoView assign() key=" + key + ", value=" + value);
         this.controller.assign(key, value);
     }
 
@@ -204,8 +250,8 @@ class OsagoView {
 
                 for (var key in obj) {
                     options.push({value: key, label: obj[key].label, selected: false});
-                  console.log('*********************driving_experience');
-                  console.dir(options);
+                 /* console.log('*********************driving_experience');
+                  console.dir(options);*/
 
                 }
                 break;
@@ -266,16 +312,27 @@ class OsagoView {
                 break;
             case "period":
                 var obj = this.model.getPeriod();
-
+              if (this.params.fixedPeriod) {  //это key или null
+                //для фиксированного key формируем единствееную опцию
+                var key = this.params.fixedPeriod;
+                if (obj.hasOwnProperty(key)) {
+                  options.push({value: key, label: obj[key].label, selected: true});
+                }
+              } else {
                 for (var key in obj) {
-                    options.push({value: key, label: obj[key].label, selected: false});
+                  options.push({
+                    value: key,
+                    label: obj[key].label,
+                    selected: false
+                  });
                 }
                 if (this.params.yurPeriod) {
-                    //удалить из массива лишние периоды для юр лиц
-                    options = options.slice(3);
+                  //удалить из массива лишние периоды для юр лиц
+                  options = options.slice(3);
                   /*  console.log(" options period");
                     console.dir(options);*/
                 }
+              }
 
               /*  console.log("OsagoView. getOptions() period **************************");
                 console.dir(options);*/

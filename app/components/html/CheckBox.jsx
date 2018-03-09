@@ -22,18 +22,18 @@ class CheckBox extends BaseElement{
     componentWillReceiveProps(newProps) {
 //    console.log('CheckBox4 componentWillReceiveProps() name='+this.props.name);
 //    console.dir(newProps);
-        this.setState({checked:newProps.checked});
+        this.setState({checked:newProps.selected});
     }
     render(){
-        console.log('/*/*/*/*/ checkbox '+this.props.name);
+        console.log('***checkbox '+this.props.name);
         return <span>
       <input type="checkbox" {...super.sanitizeProps()}
              //value={!!this.state.checked}
              value={this.state.checked ? 1 : 0}
              checked={this.state.checked}
              onChange={this.handleCheckbox}
-             disabled={!this.props.enabled}
- /*            disabled={this.props.enabled ? undefined : "disabled"} */
+             disabled={this.props.enabled===false}
+
       />
             {this.props.label}
     </span>

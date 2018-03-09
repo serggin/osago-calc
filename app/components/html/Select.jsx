@@ -75,12 +75,13 @@ class Select extends BaseElement {
          {this.state.selected=='' && this.props.options.length>1 ?
          т.е. если только 1 опция, то placeholder не ставится!
          */
-      console.log('/*/*/*/*/ select '+this.props.name);
+   //  console.log('/*/*/*/*/ select '+this.props.name);
+      //console.dir(this.props);
 
         return <select {...super.sanitizeProps()}
                        value={this.state.selected}
                        onChange={this.handleChange}
-                       disabled={!this.props.enabled ? null : 'disabled'}
+                       disabled={this.props.enabled===false}
         >
             {this.state.selected=='' && this.props.options.length>1 ?
                 <option value="" disabled hidden>-- { this.props.placeholder ? this.props.placeholder : 'Сделайте выбор' }--</option>:''

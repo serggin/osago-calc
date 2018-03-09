@@ -74,8 +74,7 @@ class CalcForm extends React.Component {
                           id="trailer"
                           labelProps={{className: "col-lg-12 label label-info"}} label="Да, есть прицеп"
                          selected={this.state.trailer.selected}
-                         // enabled2={this.state.trailer.enabled}
-                         enabled={false}
+                         enabled={this.state.trailer.enabled}
                           assigned={(v)=>this.assignedHandler('trailer', v)}/>
 
           <FormSelect name="powerTC" formlabel="Мощность двигателя (л.с.)"
@@ -97,7 +96,8 @@ class CalcForm extends React.Component {
                        options={this.getOptions("period")}
                        placeholder="Выберите период использования"
                        assigned={(v)=>this.assignedHandler('period', v)}
-                      selected={this.state.period.selected}/>
+                      selected={this.state.period.selected}
+                      enabled={this.state.period.enabled}/>
 
 
           <FormSelect id="kbm" name="kbm" formlabel="КБМ"
@@ -105,13 +105,15 @@ class CalcForm extends React.Component {
                        options={this.getOptions("kbm")}
                        placeholder="Выберите КБМ"
                        assigned={(v)=>this.assignedHandler('kbm', v)}
-                      selected={this.state.kbm.selected}/>
+                      selected={this.state.kbm.selected}
+                      enabled={this.state.kbm.enabled}/>
 
           <FormSelect id="regions" name="regions" formlabel="Регион"
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                        options={this.getOptions("regions")}
                        placeholder="Выберите регион"
-                       assigned={(v)=>this.assignedHandler('regions', v)}/>
+                       assigned={(v)=>this.assignedHandler('regions', v)}
+                      enabled={this.state.regions.enabled}/>
 
           <FormSelect id="city" name="city" formlabel="Место регистрации собственника ТС "
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
@@ -125,20 +127,25 @@ class CalcForm extends React.Component {
                           labelProps={{className: "col-lg-12 label label-info"}}
                           label="Да, имеются грубые нарушения условий страхования"
                          selected={this.state.crime.selected}
-                          assigned={(v)=>this.assignedHandler('crime', v)}/>
+                          assigned={(v)=>this.assignedHandler('crime', v)}
+                         enabled={this.state.crime.enabled}
+          />
 
           <FormCheckbox1 name="limit" formlabel="Количество водителей ограничено"
                           id="limit"
                           labelProps={{className: "col-lg-12 label label-info"}}
                           label="Нет, не ограничено"
                           selected={this.state.limit.selected}
+                          enabled={this.state.limit.enabled}
                           assigned={(v)=>this.assignedHandler('limit', v)}/>
 
           <FormSelect id="driving_experience" name="driving_experience" formlabel="Минимальный возраст и водительский стаж лиц, допущенных к управлению ТС"
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                        options={this.getOptions("driving_experience")}
                        placeholder="Выберите соответствующий возраст и стаж"
-                       assigned={(v)=>this.assignedHandler('driving_experience', v)}/>
+                       assigned={(v)=>this.assignedHandler('driving_experience', v)}
+                      enabled={this.state.driving_experience.enabled}
+          />
         </div>
     )
   }

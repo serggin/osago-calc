@@ -18,8 +18,11 @@ class OsagoController {
     setView(view) {
         console.log("OsagoController.setView()");
         this.view = view;
+
         this.factors = this.getDefaultFactors();
         this.calculate();
+
+        this.refreshView();
     }
 
     /**
@@ -29,7 +32,7 @@ class OsagoController {
         return {
           owner: "fiz",
           registration: "regRu",
-          typyTC: "tc31",
+          typeTC: "tc22",
           trailer: false,
           powerTC: null,
           term: 't12',
@@ -43,6 +46,7 @@ class OsagoController {
 
           fixedTerm: 't12',   //фиксированный срок договора: =null => выводим список;
                                 // =key in model.getTerm() => выводим только эту опцию
+          fixedPeriod: null
         }
     }
 
@@ -72,7 +76,7 @@ class OsagoController {
      */
     assign(key, value) {
         if (key == 'regions' || key == 'city') {
-            console.log('OsagoController5.assign() key=' + key + " value=" + value);
+         //   console.log('OsagoController5.assign() key=' + key + " value=" + value);
         }
 
         let params = {};
@@ -118,54 +122,22 @@ class OsagoController {
     }
 
     handleOwnerDepencies() {
-        this.params.yurPeriod = false;
+        //this.params.yurPeriod = false;
         switch (this.params.owner) {
             case "yur":
-                /*
-                 Важно! Минимальный период использования составляет:
-                 - для физических лиц – 3 месяца (КС = 0,5);
-                 - для юридических лиц – 6 месяцев (КС = 0,7).
-                 */
-                /*  console.log("this.params.period this.params.period this.params.period this.params.period this.params.period ====");
-                 console.dir(this.params.period);*/
-                this.params.yurPeriod = true;
+              this.params.limit = true;
+              this.params.driving_experience = null;
+              break;
 
-                break;
-
-        }
-        if (this.params.yurPeriod === true) {
-            this.params.limit = true;
-          //  this.view.states.limit.disabled = 'disabled';
-        }
-        if (this.params.owner == 'fiz') {
-
-            if (this.params.registration == 'regFo') {
-                this.view.states.limit.disabled = 'disabled';
-             //   this.view.states.limit.checked=false;
-            } else {
-            //    this.view.states.limit.disabled = null;
-            }
-        }
-        this.params.trailer = null;
-        this.view.states.trailer.disabled = null;
-        if (this.params.owner == 'fiz') {
-            if (this.params.typeTC == 'tc22' || this.params.typeTC == 'tc23') {
-                this.view.states.trailer.disabled = 'disabled';
-            }
-        }
-        //document.getElementById("kbm").disabled = false;
-
-        if (this.params.registration !== 'regRu') {
-            this.params.kbm = null;
-         //   document.getElementById("kbm").disabled = true;
-            if (this.params.typeTC != 'tc21' || this.params.typeTC != 'tc22' || this.params.typeTC != 'tc23') {
-                this.view.states.kbm = '1';
-            }
+          case "fiz":
+              break;
         }
     }
 
     handleRegistrationDependencies() {
-        switch (this.params.registration) {
+      this.params.fixedPeriod = null;
+
+      switch (this.params.registration) {
 
             case "regRu":
                 this.params.fixedTerm = 't12';  // 1 год
@@ -174,6 +146,9 @@ class OsagoController {
             case "regNo":
                 this.params.fixedTerm = 't20';  // до 20 дней
                 this.params.term = 't20';
+                this.params.fixedPeriod = 't8';
+                this.params.period = 't8';
+                this.params.crime = false;
 
                 break;
 
