@@ -34,9 +34,9 @@ class OsagoController {
           registration: "regRu",
           typeTC: "tc22",
           trailer: false,
-          powerTC: null,
+          powerTC: 'p70',
           term: 't12',
-          period: null,
+          period: 't8',
           kbm: null,
           regions: null,
           city: null,
@@ -115,9 +115,9 @@ class OsagoController {
         if (this.params.typeTC == 'tc21' ||
             this.params.typeTC == 'tc22' ||
             this.params.typeTC == 'tc23') {
-//            this.params.powerTC.disabled = 'true';
+         //  this.params.powerTC = '';
         }else{
-//            this.params.powerTC.disabled = null;
+       //    this.params.powerTC = null;
         }
     }
 
@@ -153,7 +153,7 @@ class OsagoController {
                 break;
 
             case "regFo":
-            /*this.params.powerTC = null;*/
+              break;
 
             default:
                 this.params.fixedTerm = null;
@@ -427,9 +427,7 @@ class OsagoController {
     }
 
     getTerm() {
-
         return this.params.term ? this.term.coeff : null;//вернет null если физ лицо, Россия, на 1 год, ТС кат В
-
     }
 
     /**

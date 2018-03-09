@@ -82,7 +82,9 @@ class CalcForm extends React.Component {
                        options={this.getOptions("powerTC")}
                        placeholder="Выберите мощность ТС"
                        assigned={(v)=>this.assignedHandler('powerTC', v)}
-                      selected={this.state.powerTC.selected}/>
+                      selected={this.state.powerTC.selected}
+                      enabled={this.state.powerTC.enabled}
+          />
 
           <FormSelect name="term" formlabel="Срок договора"
                        labelProps={{className: "col-lg-12 label label-info"}}

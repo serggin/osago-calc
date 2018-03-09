@@ -8,15 +8,21 @@
   border-radius: 10px;
 
 }
-
-#premium-content-okatana>div{
-  margin-top:4%;
+select:disabled{
+  color: rgba(55, 76, 82, 0.61);
+  background-color: #b3b3b3;
+  font-style: italic;
+}
+#premium-content>div{
+  margin-top:0;
+  margin-bottom:20px;
   padding:20px;
   border: #e5e5e5 solid 1px;
   border-radius: 10px;
   color:white;
   font-weight: bold;
-  background-color: #960835;
+  font-size:20px;
+  background-color: #5bc0de;
   min-height: 90px;
 }
 

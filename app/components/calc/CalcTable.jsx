@@ -50,7 +50,7 @@ class CalcTable extends React.Component {
 
   render() {
     return <div>
-      <Table id="coeff_table" colHeaders={this.colHeaders} data={this.state.data}/>
+      <Table id="coeff_table" colHeaders={this.colHeaders} data={this.state.data} enabled='false'/>
 
     </div>
   }

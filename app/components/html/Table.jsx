@@ -15,6 +15,8 @@ class Table extends BaseElement{
 
 
     render(){
+        console.log('---+++++++++++++table.props=');
+        console.dir(this.props);
         return <table {...super.sanitizeProps()} className="table table-striped" >
             {this.props.caption ? <caption>{this.props.caption}</caption> : null}
             {this.props.colHeaders ? <thead>

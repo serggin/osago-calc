@@ -52,28 +52,36 @@ class OsagoView {
     displayDependencies(){
       console.log('------params');
         console.dir(this.params);
-        if(this.params.regions){
-           this.states.city.enabled =  true;
-        }
+
+      this.states.term.enabled = true;
+      this.states.period.enabled = true;
+      this.states.kbm.enabled = true;
+      this.states.regions.enabled = true;
+      this.states.crime.enabled = true;
+      this.states.city.enabled =  true;
+      this.states.trailer.enabled = true;
+      this.states.driving_experience.enabled = true;
+      this.states.limit.enabled = true;
+      this.states.powerTC.enabled = true;
+
+      if(!this.params.regions){
+           this.states.city.enabled =  false;
+      }
 
         //прицеп не учитывается для физ лица тип ТС=В
       var typeTC = this.params.typeTC;
       if(this.params.owner=='fiz' && (typeTC=='tc22' || typeTC == 'tc23'))
         this.states.trailer.enabled = false;
-      else
-        this.states.trailer.enabled = true;
+
 
       //нет лимита на доступ лиц
       if(this.params.limit)
         this.states.driving_experience.enabled = false;
-      else
-        this.states.driving_experience.enabled = true;
+
+
       if(this.params.owner=='yur'){
         this.states.limit.enabled = false;
         this.states.driving_experience.enabled = false;
-      }else{
-        this.states.limit.enabled = true;
-        this.states.driving_experience.enabled = true;
       }
 
       //Cледует к месту регистрации
@@ -83,13 +91,21 @@ class OsagoView {
         this.states.kbm.enabled = false;
         this.states.regions.enabled = false;
         this.states.crime.enabled = false;
-      }else{
-        this.states.term.enabled = true;
-        this.states.period.enabled = true;
-        this.states.kbm.enabled = true;
-        this.states.regions.enabled = true;
-        this.states.crime.enabled = true;
       }
+
+      //Cледует Иностр гос
+      if(this.params.registration=='regFo'){
+        this.states.period.enabled = false;
+        this.states.kbm.enabled = false;
+        this.states.regions.enabled = false;
+        this.states.crime.enabled = false;
+        this.states.limit.enabled = false;
+        this.states.driving_experience.enabled = false;
+      }
+      //мощность не учитывать если не кат B
+      if(!(this.params.typeTC=='tc21' || this.params.typeTC=='tc22' || this.params.typeTC=='tc23'))
+        this.states.powerTC.enabled = false;
+
     }
 
     setRequestValues(params, factors, premium) {
@@ -207,7 +223,7 @@ class OsagoView {
     getInitialStates() {
         return {
             owner: {buttonChecked: "fiz"},
-            typeTC:{selected: "tc22"},
+            typeTC:{selected: "tc22", enabled:true },
             registration: {buttonChecked: "regRu"},
             trailer: {selected: false, enabled:false},
             powerTC:{selected: 'p70'},
@@ -218,7 +234,7 @@ class OsagoView {
             limit: {selected: false},
           driving_experience:{enabled:true},
             region: {region: null},
-            crime: {selected: null, },
+            crime: {selected: false, },
             kbm:{selected: "kbm3"},
 
         }
@@ -374,13 +390,13 @@ class OsagoView {
   render() {
     return (
         <div>
-          <div id="calc-content" className="col-lg-5">
+          <div id="calc-content" className="col-lg-7">
             <CalcForm     view={this}
                           states={this.getInitialStates()}
                           ref={(element)=>{this.calcForm = element; this.checkReady()}}/>
 
           </div>
-          <div  className="col-lg-3">
+          <div  className="col-lg-5">
             <div id="premium-content">
               <OsagoPremium ref={(element)=>{this.osagoPremium = element; this.checkReady()}}/>
 
