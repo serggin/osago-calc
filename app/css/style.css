@@ -77,5 +77,8 @@ select:disabled{
 .no-padding-left {
   padding-left: 0 !important;
 }
+div#osagoContent, div#osagoContent div{
+  box-sizing: border-box;
+}
 
 

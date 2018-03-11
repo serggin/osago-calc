@@ -10,8 +10,14 @@ class OsagoView {
         // this.render = this.render.bind(this);
         this.states = this.getInitialStates();
         this.params = {};
+        this.callback = null;
         //this.premium = 0;
     }
+
+  setCallBack(callback){
+      this.callback = callback;
+
+  }
 
     /**
      * Отобразить форму и таблицу
@@ -44,9 +50,14 @@ class OsagoView {
         this.calcTable.setFactors(factors);   // обновить таблицу
 
         this.osagoPremium.setPremium(premium);
-//        this.setRequestValues(params, factors, premium);
-        //$('input[name="insurance_premium"]').val(premium);
-        //(params.owner == 'fiz') ?
+
+        if(this.callback){
+          var data = this.model.getNamesFromParams(params);
+          data = Object.assign(data, {factors:factors, premium:premium});
+          /*console.log('%%%%%%%%%% factors %%%%%%%%%%5 === ');
+          console.dir(factors);*/
+          this.callback(data);
+        }
     }
 
     displayDependencies(){
@@ -65,6 +76,7 @@ class OsagoView {
       this.states.powerTC.enabled = true;
 
       if(!this.params.regions){
+           this.states.city.enabled =  false;
            this.states.city.enabled =  false;
       }
 
@@ -108,113 +120,7 @@ class OsagoView {
 
     }
 
-    setRequestValues(params, factors, premium) {
-        var request_values = '';
-        var typeTC_customer;
-        var powerTC_customer;
-        var owner_customer;
-        var registration;
-        var term_customer;
-        var period_customer;
-        var kbm_customer;
-        var region_customer;
-        var city_customer;
-        var crime_customer;
-        var limit_customer;
-        var driving_experience_customer;
-        var trailer_customer;
-        var tariff_values_customer;
 
-        switch (this.params.registration) {
-            case "regRu":
-                registration = ' ТС зарегистрировано в России; ';
-                break;
-            case "regNo":
-                registration = ' ТС зарегистрировано в  иностранном государстве; ';
-                break;
-            case "regFo":
-                registration = " ТС следует к месту регистрации; ";
-                break;
-        }
-
-        typeTC_customer = params.typeTC ? (typeTC[params.typeTC].label+'; ') : 'Не выбрано; ';
-
-        powerTC_customer=  params.powerTC ? (powerTC[params.powerTC].label+'; ') : 'Не выбрано; ';
-
-        owner_customer = ((params.owner == 'fiz') ? ' физ.лицо; ' : ' юр.лицо; ');
-
-        term_customer= params.term  ? (term[params.term].label+'; ') : 'Не выбрано; ';
-        period_customer=  params.period ? (period[params.period].label+'; ') : 'Не выбрано; ';
-        kbm_customer=  params.kbm ? (kbm[params.kbm].label+'; ') : 'Не выбрано; ';
-        region_customer=  params.regions ? (regions[params.regions].label+'; ') : 'Не выбрано; ';
-        city_customer=  params.city ? (params.city + '; ') : 'Не выбрано; ';
-
-        tariff_values_customer = (params.typeTC && params.regions) ? typeTC[params.typeTC][regions[params.regions].st_group]+'; ' : 'Не выбрано; ';
-
-        limit_customer=  params.limit == true ? 'ДА; ' : 'НЕТ; ';
-        crime_customer=  params.crime == true ? 'ДА; ' : 'НЕТ; ';
-        driving_experience_customer= params.driving_experience  ? (driving_experience[params.driving_experience].label+'; ') : 'Не выбрано; ';
-        trailer_customer = (params.trailer ? 'ДА; ': 'НЕТ; ');
-        var str ='<table>' +
-            '<tbody>' +
-            '<tr>' +
-                '<th>Владелец:</th>' +
-                '<th>Регистрация ТС:</th>' +
-                '<th>Тип ТС:</th>' +
-                '<th>Прицеп:</th>' +
-                '<th>Мощность ТС:</th>' +
-                '<th>Срок договора:</th>' +
-            '<th>Период использования ТС:</th>' +
-            '<th>КБМ:</th>' +
-            '<th>Регион:</th>' +
-            '<th>Город:</th>' +
-            '<th>Имеются грубые нарушения:</th>' +
-            '<th>Кол-во водителей ограничено:</th>' +
-            '<th>Минимальный возраст/стаж:</th>' +
-            '</tr>' +
-            '<tr>' +
-                '<td>'+owner_customer+'</td>' +
-            '<td>'+registration+'</td>' +
-            '<td>'+typeTC_customer+'</td>' +
-            '<td>'+trailer_customer+'</td>' +
-        '<td>'+powerTC_customer+'</td>' +
-        '<td>'+term_customer+'</td>' +
-        '<td>'+period_customer+'</td>' +
-        '<td>'+kbm_customer+'</td>' +
-        '<td>'+region_customer+'</td>' +
-        '<td>'+city_customer+'</td>' +
-        '<td>'+crime_customer+'</td>' +
-        '<td>'+limit_customer+'</td>' +
-        '<td>'+driving_experience_customer+'</td>' +
-            '</tr>' +
-
-            '</tbody>' +
-            '</table>';
-
-
-        request_values  =str;
-
-
-
-   /*     request_values += 'Владелец:' + owner_customer;
-        request_values += 'Регистрация ТС:' + registration;
-        request_values += 'Тип ТС:' + typeTC_customer;
-        request_values += 'Прицеп:' + trailer_customer;
-        request_values += 'Мощность ТС:' + powerTC_customer;
-        request_values += 'Срок договора:' + term_customer;
-        request_values += 'Период использования ТС:' + period_customer;
-        request_values += 'КБМ:' + kbm_customer;
-        request_values += 'Регион:' + region_customer;
-        request_values += 'Город:' + city_customer;
-        request_values += 'Имеются грубые нарушения:' + crime_customer;
-        request_values += 'Кол-во водителей ограничено:' + limit_customer;
-        request_values += 'Минимальный возраст/стаж:' + driving_experience_customer;
-
-*/
-        $('input[name="tariff_values"]').val(tariff_values_customer);
-        $('input[name="request_values"]').val(request_values);
-        $('input[name="premium_values"]').val(premium);
-    }
 
     /**
      * Выдать начальные значения параметров формы

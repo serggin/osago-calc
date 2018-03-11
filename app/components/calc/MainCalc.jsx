@@ -6,7 +6,7 @@ const CalcTable = require('../calc/CalcTable.jsx')
 const OsagoModel = require('../calc/OsagoModel.js')
 const OsagoController = require('../calc/OsagoController.js')
 const OsagoView = require('../calc/OsagoView.js')
-
+const PropTypes = require('prop-types')
 
 class MainCalc extends React.Component {
   constructor(props) {
@@ -16,6 +16,9 @@ class MainCalc extends React.Component {
     this.model = new OsagoModel();
     this.controller = new OsagoController(this.model);
     this.view = new OsagoView(this.model, this.controller);
+    if(props.calcCallBack){
+      this.view.setCallBack(props.calcCallBack);
+    }
   }
 
 /*  getInitialStates() {
@@ -30,13 +33,7 @@ class MainCalc extends React.Component {
 
     }
   }*/
-  /**
-   * Проверить готовность компонентов интерфейса и связать контроллер с собой
-   */
-  checkReady() {
-        if (this.calcForm && this.calcTable && this.displayPremium)
-          this.controller.setView(this);
-  }
+
 
   render(){
     return this.view.render();
@@ -44,5 +41,10 @@ class MainCalc extends React.Component {
 
 
 }
-
+MainCalc.propTypes = {
+  calcCallBack: PropTypes.func
+}
+MainCalc.defaultProps = {
+  calcCallBack: null
+}
 module.exports = MainCalc

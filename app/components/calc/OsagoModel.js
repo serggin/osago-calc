@@ -67,5 +67,28 @@ class OsagoModel {
       return this.period[key];
     return this.period;
   }
+
+  getNamesFromParams(params){
+    var names={};
+    if(params.regions)
+      names.regions = this.getRegions(params.regions).label;
+    if(params.driving_experience)
+      names.driving_experience = this.getDriving_experience(params.driving_experience);
+
+    if(params.period)
+      names.period = this.getPeriod(params.period).label;
+
+    if(params.powerTC)
+      names.powerTC = this.getPowerTC(params.powerTC).label;
+
+    if(params.typeTC)
+      names.typeTC = this.getTypeTC(params.typeTC).label;
+
+    if(params.term)
+      names.term = this.getTerm(params.term).label;
+
+    return Object.assign({},params, names);
+
+  }
 }
 module.exports = OsagoModel;
