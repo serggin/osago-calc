@@ -484,7 +484,13 @@ class OsagoController {
             }
         }
         if(this.factors.typeTC && this.factors.territory){
-            var dopustimoe = this.factors.typeTC *3*this.factors.territory;
+            var dopustimoe;
+            if (this.factors.crime){
+                dopustimoe = this.factors.typeTC *5*this.factors.territory;
+            }else{
+                dopustimoe = this.factors.typeTC *3*this.factors.territory;
+            }
+
             if(premium>dopustimoe){
                 premium = dopustimoe;
             }
