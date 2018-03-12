@@ -1,6 +1,6 @@
 const React = require('react')
 const Table = require('../html/Table.jsx')
-
+const number_format = require('../../utils/number_format.js')
 
 class CalcTable extends React.Component {
   constructor(props) {
@@ -19,12 +19,12 @@ class CalcTable extends React.Component {
     var factorData = this.factorData();
     for (var key in factorData) {
       var value = factors[key] ? factors[key] : 'не используется';
-      data.push([factorData[key], this.number_format(value, 2, ',', ' ')]);
+      data.push([factorData[key], number_format(value, 2, ',', ' ')]);
     }
     this.setState({data: data});
   }
 
-  number_format(number, decimals, dec_point, thousands_sep) {
+ /* number_format(number, decimals, dec_point, thousands_sep) {
     number = (number + '').replace(/[^0-9+\-Ee.]/g, '');
     var n = !isFinite(+number) ? 0 : +number,
         prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
@@ -49,7 +49,7 @@ class CalcTable extends React.Component {
           .join('0');
     }
     return s.join(dec);
-  }
+  }*/
 
   factorData() {
     return {
