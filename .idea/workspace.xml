@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da92b7d6-8600-4140-a265-06dab0b5bb07" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/calc/CalcTable.jsx" afterPath="$PROJECT_DIR$/app/components/calc/CalcTable.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/calc/OsagoController.js" afterPath="$PROJECT_DIR$/app/components/calc/OsagoController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx" afterPath="$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx" />
     </list>
     <ignored path="osago_calc_new.iws" />
@@ -45,7 +44,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CalcTable.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CalcTable.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/components/calc/CalcTable.jsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="139">
@@ -95,11 +94,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OsagoPremium.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OsagoPremium.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="39" column="1" selection-start-line="14" selection-start-column="2" selection-end-line="39" selection-end-column="1" />
+            <state relative-caret-position="268">
+              <caret line="43" column="110" selection-start-line="43" selection-start-column="110" selection-end-line="43" selection-end-column="110" />
               <folding />
             </state>
           </provider>
@@ -139,8 +138,8 @@
         <option value="$PROJECT_DIR$/app/components/calc/OsagoModel.js" />
         <option value="$PROJECT_DIR$/app/main/main.jsx" />
         <option value="$PROJECT_DIR$/app/components/calc/OsagoController.js" />
-        <option value="$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx" />
         <option value="$PROJECT_DIR$/app/components/calc/CalcTable.jsx" />
+        <option value="$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx" />
       </list>
     </option>
   </component>
@@ -370,12 +369,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520842455725</updated>
-      <workItem from="1520842457381" duration="15935000" />
+      <workItem from="1520842457381" duration="16280000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15935000" />
+    <option name="totallyTimeSpent" value="16280000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
@@ -505,18 +504,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="39" column="1" selection-start-line="14" selection-start-column="2" selection-end-line="39" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/components/calc/CalcTable.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="139">
           <caret line="21" column="70" selection-start-line="21" selection-start-column="70" selection-end-line="21" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/calc/OsagoPremium.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="43" column="110" selection-start-line="43" selection-start-column="110" selection-end-line="43" selection-end-column="110" />
           <folding />
         </state>
       </provider>

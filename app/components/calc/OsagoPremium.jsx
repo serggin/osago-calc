@@ -40,8 +40,8 @@ class OsagoPremium extends React.Component{
 }
   render() {
     return <div>
-      <div className="col-lg-7">Страховая премия: </div>
-      <div className="col-lg-5">{this.state.premium ? (this.number_format(this.state.premium,2, ',', ' ')) +'руб.': 'Мало данных для расчета'  }  </div>
+      <div className="col-lg-6">Страховая премия: </div>
+      <div className="col-lg-6">{this.state.premium ? (this.number_format(this.state.premium,2, ',', ' ')) +' руб.': 'Мало данных для расчета'  }  </div>
 
     </div>
   }
