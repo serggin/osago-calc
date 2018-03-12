@@ -37,7 +37,7 @@ class OsagoController {
           powerTC: 'p70',
           term: 't12',
           period: 't8',
-          kbm: null,
+          kbm: 'kbm3',
           regions: null,
           city: null,
           crime: false,
@@ -109,17 +109,8 @@ class OsagoController {
     handleDependences() {
         this.handleRegistrationDependencies();
         this.handleOwnerDepencies();
-        this.handleTypeTCDepencies();
     }
-    handleTypeTCDepencies(){
-        if (this.params.typeTC == 'tc21' ||
-            this.params.typeTC == 'tc22' ||
-            this.params.typeTC == 'tc23') {
-         //  this.params.powerTC = '';
-        }else{
-       //    this.params.powerTC = null;
-        }
-    }
+
 
     handleOwnerDepencies() {
         //this.params.yurPeriod = false;
@@ -358,7 +349,7 @@ class OsagoController {
           прицепов (в том числе полуприцепов и прицепов-роспусков);
           транспортных средств, зарегистрированных в иностранных государствах;
           транспортных средств на срок следования к месту регистрации.*/
-        var kbmCoeff = null;
+        var kbmCoeff = 1;
         if (this.params.registration != "regRu") {
             kbmCoeff = null;
             if (this.params.registration === "regFo") {
@@ -492,6 +483,13 @@ class OsagoController {
                 this.premium = this.factors.typeTC * this.factors.territory * 5;
             }
         }
+        if(this.factors.typeTC && this.factors.territory){
+            var dopustimoe = this.factors.typeTC *3*this.factors.territory;
+            if(premium>dopustimoe){
+                premium = dopustimoe;
+            }
+        }
+
         this.premium = premium;
     }
 }

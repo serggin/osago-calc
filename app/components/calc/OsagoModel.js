@@ -86,6 +86,8 @@ class OsagoModel {
 
     if(params.term)
       names.term = this.getTerm(params.term).label;
+    if(params.kbm)
+      names.kbm = this.getKbm(params.kbm).label;
 
     return Object.assign({},params, names);
 

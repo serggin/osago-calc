@@ -10,14 +10,14 @@ class Table extends BaseElement{
 
     getExcludeProps() {
 //    console.log("getExcludeProps(): TextInput4-"+this.getName());
-        return ['caption', 'colHeaders','dataFoot'];
+        return ['caption', 'colHeaders','dataFoot','enabled'];
     }
 
 
     render(){
         console.log('---+++++++++++++table.props=');
         console.dir(this.props);
-        return <table {...super.sanitizeProps()} className="table table-striped" >
+        return <table {...super.sanitizeProps()} className="table table-striped">
             {this.props.caption ? <caption>{this.props.caption}</caption> : null}
             {this.props.colHeaders ? <thead>
             <tr>

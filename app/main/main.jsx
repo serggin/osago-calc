@@ -15,20 +15,53 @@ var table = '<table>';
       table += '<tr>';
           table += '<th>Владелец</th>';
           table += '<th>Регистрация ТС</th>';
+    table += '<th>Тип ТС</th>';
+    table += '<th>Прицеп</th>';
+    table += '<th>Мощность ТС</th>';
+    table += '<th>Срок договора</th>';
+    table += '<th>Период использования  ТС</th>';
+    table += '<th>КБМ</th>';
+    table += '<th>Регион</th>';
+    table += '<th>Город</th>';
+    table += '<th>Имеются грубые нарушения</th>';
+    table += '<th>Кол-во водителей ограничено</th>';
+    table += '<th>Минимальный возраст/стаж</th>';
       table += '</tr>'
 
       table += '<tr>';
         table += '<td>'+(data.owner=='fiz' ? 'Физ.л.':'Юр.л.')+'</td>';
         table += '<td>'+(data.registration=='regRu'? 'РФ' : (data.registration=='regFo'? 'Иностр.гос-во':'Следует к МР'))+'</td>';
+    table += '<td>'+data.typeTC+'</td>';
+    table += '<td>'+(data.trailer==false? 'нет':'да')+'</td>';
+    table += '<td>'+data.powerTC+'</td>';
+    table += '<td>'+data.term+'</td>';
+    table += '<td>'+data.period+'</td>';
+    table += '<td>'+(data.kbm? data.kbm : 'kbm3')+'</td>';
+    table += '<td>'+data.regions+'</td>';
+    table += '<td>'+data.city+'</td>';
+    table += '<td>'+(data.crime==false ? 'нет':'да')+'</td>';
+    table += '<td>'+(data.limit==false ? 'нет':'да')+'</td>';
+    table += '<td>'+(data.driving_experience ? data.driving_experience.label : '--')+'</td>';
       table += '</tr>'
 
       table += '<tr>';
         table += '<td></td>';
         table += '<td></td>';
+        table += '<td></td>';
+        table += '<td>'+(data.factors.trailer ? data.factors.trailer : '--' )+'</td>';
+    table += '<td>'+(data.factors.powerTC ? data.factors.powerTC : '--' )+'</td>';
+    table += '<td>'+(data.factors.term ? data.factors.term : '--' )+'</td>';
+    table += '<td>'+(data.factors.period ? data.factors.period : '--' )+'</td>';
+    table += '<td>'+(data.factors.kbm ? data.factors.kbm :'--')+'</td>';
+    table += '<td></td>';
+    table += '<td>'+(data.factors.territory ? data.factors.territory : '--' )+'</td>';
+    table += '<td>'+(data.factors.crime ? data.factors.crime : '--' )+'</td>';
+    table += '<td>'+(data.factors.limit ? data.factors.limit : '--' )+'</td>';
+    table += '<td>'+(data.factors.driving_experience ? data.factors.driving_experience : '--' )+'</td>';
 
       table += '</tr>'
 table +=    '</table>';
-var colHeaders =['Владелец', 'Регистрация'];
+/*var colHeaders =['Владелец', 'Регистрация'];
 var tabData = [
     [data.owner=='fiz' ? 'Физ.л.':'Юр.л.',
       data.registration=='regRu'? 'РФ' : (data.registration=='regFo'? 'Иностр.гос-во':'Следует к МР')],
@@ -40,11 +73,12 @@ var tabData = [
               colHeaders={colHeaders}
               data={tabData}/>,
           document.getElementById('requestTable')
-      )
 
+      )
+*/
   if(document.getElementById('tariff_values')) {
     document.getElementById('tariff_values').value = data.factors.typeTC;
-    document.getElementById('request_values').value = document.getElementById('requestTable').innerHTML.toString();
+    document.getElementById('request_values').value = table;//document.getElementById('requestTable').innerHTML.toString();
     document.getElementById('premium_values').value = data.premium;
   }
 }
