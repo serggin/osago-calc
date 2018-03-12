@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="da92b7d6-8600-4140-a265-06dab0b5bb07" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/calc/OsagoController.js" afterPath="$PROJECT_DIR$/app/components/calc/OsagoController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/calc/OsagoModel.js" afterPath="$PROJECT_DIR$/app/components/calc/OsagoModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/components/html/Table.jsx" afterPath="$PROJECT_DIR$/app/components/html/Table.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/main/main.jsx" afterPath="$PROJECT_DIR$/app/main/main.jsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-    </list>
+    <list default="true" id="da92b7d6-8600-4140-a265-06dab0b5bb07" name="Default" comment="" />
     <ignored path="osago_calc_new.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
