@@ -11,12 +11,12 @@ const typeTC = {
          */
     },
     tc21: {
-        label: "ТС категории В для юр лиц",
+        label: "ТС категории В",
         st3: 2573, st4: 2573, st5: 2573, st6: 3087
 
     },
     tc22: {
-        label: "ТС категории В для физ лиц",
+        label: "ТС категории В",
         st3: 4118, st4: 4118, st5: 3700, st6: 4118
     },
     tc23: {
@@ -83,7 +83,7 @@ const powerTC = {
         coeff: 1.4
     },
     p150: {
-        label: "свыше 150 включительно",
+        label: "свыше 150",
         coeff: 1.6
     }
 
@@ -188,69 +188,69 @@ const period = {
 };
 const kbm = {
     kb100: {
-        label: "Не страховался ранее",
+        label: "1 -- Не страховался ранее",
         coeff: 1
     },
     kb110: {
-        label: "КБМ M",
+        label: "2.45  --  класс КБМ M",
         coeff: 2.45
     },
 
     kbm0: {
-        label: "КБМ 0",
+        label: "2.3  --  класс КБМ 0",
         coeff: 2.3
     },
     kbm1: {
-        label: "КБМ 1",
+        label: "1.55  --  класс КБМ 1",
         coeff: 1.55
     },
     kbm2: {
-        label: "КБМ 2",
+        label: "1.4  --  класс КБМ 2",
         coeff: 1.4
     },
     kbm3: {
-        label: "КБМ 3",
+        label: "1.0  --  класс КБМ 3",
         coeff: 1.0
     },
     kbm4: {
-        label: "КБМ 4",
+        label: "0.95  --  класс КБМ 4",
         coeff: 0.95
     },
     kbm5: {
-        label: "КБМ 5",
+        label: "0.9  --  класс КБМ 5",
         coeff: 0.9
     },
 
     kbm6: {
-        label: "КБМ 6",
+        label: "0.85  --  класс КБМ 6",
         coeff: 0.85
     },
     kbm7: {
-        label: "КБМ 7",
+        label: "0.8  --  класс КБМ 7",
         coeff: 0.8
     },
     kbm8: {
-        label: "КБМ 8",
+        label: "0.75  --  класс КБМ 8",
         coeff: 0.75
     },
     kbm9: {
-        label: "КБМ 9",
+        label: "0.7  --  класс КБМ 9",
         coeff: 0.7
     },
     kbm10: {
-        label: "КБМ 10",
+        label: "0.65  --  класс КБМ 10",
         coeff: 0.65
     },
     kbm11: {
-        label: "КБМ 11",
+        label: "0.6  --  класс КБМ 11",
         coeff: 0.6
     },
     kbm12: {
-        label: "КБМ 12",
+        label: "0.55  --  класс КБМ 12",
         coeff: 0.55
     },
     kbm13: {
-        label: "КБМ 13",
+        label: "0.5  --  класс КБМ 13",
         coeff: 0.5
     },
 };

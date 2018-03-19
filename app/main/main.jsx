@@ -13,19 +13,19 @@ function calcCallBack(data) {
   console.dir(data);
 var table = '<table>';
       table += '<tr>';
-          table += '<th>Владелец</th>';
-          table += '<th>Регистрация ТС</th>';
+          table += '<th>Лицо</th>';
+          table += '<th>Рег. ТС</th>';
     table += '<th>Тип ТС</th>';
     table += '<th>Прицеп</th>';
     table += '<th>Мощность ТС</th>';
     table += '<th>Срок договора</th>';
-    table += '<th>Период использования  ТС</th>';
+    table += '<th>Период исп-я  ТС</th>';
     table += '<th>КБМ</th>';
     table += '<th>Регион</th>';
     table += '<th>Город</th>';
     table += '<th>Имеются грубые нарушения</th>';
-    table += '<th>Кол-во водителей ограничено</th>';
-    table += '<th>Минимальный возраст/стаж</th>';
+    table += '<th>Без ограничений по кол-ву водителей</th>';
+    table += '<th>Миним. возраст/ стаж</th>';
       table += '</tr>'
 
       table += '<tr>';
@@ -37,24 +37,22 @@ var table = '<table>';
     table += '<td>'+data.term+'</td>';
     table += '<td>'+data.period+'</td>';
     table += '<td>'+(data.kbm? data.kbm : 'kbm3')+'</td>';
-    table += '<td>'+data.regions+'</td>';
-    table += '<td>'+data.city+'</td>';
+    table += '<td>'+(data.regions?data.regions : '--')+'</td>';
+    table += '<td>'+(data.city ? data.city : '--')+'</td>';
     table += '<td>'+(data.crime==false ? 'нет':'да')+'</td>';
     table += '<td>'+(data.limit==false ? 'нет':'да')+'</td>';
     table += '<td>'+(data.driving_experience ? data.driving_experience.label : '--')+'</td>';
       table += '</tr>'
 
       table += '<tr>';
-        table += '<td></td>';
-        table += '<td></td>';
-        table += '<td></td>';
+        table += '<td colspan="3">Коэффициент</td>';
+
         table += '<td>'+(data.factors.trailer ? data.factors.trailer : '--' )+'</td>';
     table += '<td>'+(data.factors.powerTC ? data.factors.powerTC : '--' )+'</td>';
     table += '<td>'+(data.factors.term ? data.factors.term : '--' )+'</td>';
     table += '<td>'+(data.factors.period ? data.factors.period : '--' )+'</td>';
     table += '<td>'+(data.factors.kbm ? data.factors.kbm :'--')+'</td>';
-    table += '<td></td>';
-    table += '<td>'+(data.factors.territory ? data.factors.territory : '--' )+'</td>';
+    table += '<td colspan="2">Коэфф.территории '+ (data.factors.territory ? data.factors.territory : '--')+'</td>';
     table += '<td>'+(data.factors.crime ? data.factors.crime : '--' )+'</td>';
     table += '<td>'+(data.factors.limit ? data.factors.limit : '--' )+'</td>';
     table += '<td>'+(data.factors.driving_experience ? data.factors.driving_experience : '--' )+'</td>';

@@ -41,7 +41,7 @@ class OsagoController {
           regions: null,
           city: null,
           crime: false,
-          limit: true,
+          limit: false,
           driving_experience: null,
 
           fixedTerm: 't12',   //фиксированный срок договора: =null => выводим список;

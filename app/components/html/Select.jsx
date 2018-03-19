@@ -78,11 +78,11 @@ class Select extends BaseElement {
    //  console.log('/*/*/*/*/ select '+this.props.name);
       //console.dir(this.props);
 
-        return <select {...super.sanitizeProps()}
+        return (
+            <div><select {...super.sanitizeProps()}
                        value={this.state.selected}
                        onChange={this.handleChange}
-                       disabled={this.props.enabled===false}
-        >
+                       disabled={this.props.enabled===false} >
             {this.state.selected=='' && this.props.options.length>1 ?
                 <option value="" disabled hidden>-- { this.props.placeholder ? this.props.placeholder : 'Сделайте выбор' }--</option>:''
             }
@@ -90,14 +90,28 @@ class Select extends BaseElement {
                 <option key={option.value} value={option.value}>{option.label}</option>
             )}
         </select>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a htmlFor={this.props.id} {...this.props.labelProps} href={this.props.hrefinner} target={this.props.targetinner}>
+                    {this.props.formlabelinner}
+                </a>
+            </div>
+        )
     }
 }
 Select.propTypes = {
     assigned: PropTypes.func,
     options: PropTypes.array,
-  selected:PropTypes.string
+  selected:PropTypes.string,
+    labelProps: PropTypes.object,
+    label: PropTypes.string,
+    formlabel: PropTypes.string,
+    formlabelinner: PropTypes.string,
+    hrefinner:PropTypes.string,
+    targetinner:PropTypes.string
 }
 Select.defaultProps = {
   selected: null
 }
+
+
 module.exports = Select

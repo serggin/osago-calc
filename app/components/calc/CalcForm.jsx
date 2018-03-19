@@ -103,6 +103,9 @@ class CalcForm extends React.Component {
 
 
           <FormSelect id="kbm" name="kbm" formlabel="КБМ"
+                      formlabelinner="Узнать КБМ"
+                      hrefinner="http://www.autoins.ru/ru/help/bonusmalus.wbp"
+                      targetinner="blank"
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                        options={this.getOptions("kbm")}
                        placeholder="Выберите КБМ"

@@ -18,8 +18,8 @@ class CalcTable extends React.Component {
     var data = [];
     var factorData = this.factorData();
     for (var key in factorData) {
-      var value = factors[key] ? factors[key] : 'не используется';
-      data.push([factorData[key], number_format(value, 2, ',', ' ')]);
+      var value = factors[key] ? number_format(factors[key], 2, ',', ' ')  : 'не используется';
+      data.push([factorData[key], value]);
     }
     this.setState({data: data});
   }

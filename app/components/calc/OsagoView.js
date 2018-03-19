@@ -136,7 +136,7 @@ class OsagoView {
             period: {selected:"t8"},
           regions:{enabled: true},
             city:{enabled: false},
-            term:{enabled:'false'},
+            term:{enabled:false},
             limit: {selected: false},
           driving_experience:{enabled:true},
             region: {region: null},
