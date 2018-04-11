@@ -113,7 +113,7 @@ class CalcForm extends React.Component {
                       selected={this.state.kbm.selected}
                       enabled={this.state.kbm.enabled}/>
 
-          <FormSelect id="regions" name="regions" formlabel="Регион"
+          <FormSelect id="regions" name="regions" formlabel="Регион" metkaFormLabel="*" metkaId="mainMetkaID"
                        labelProps={{className: "col-lg-12 label label-info mandatory-parameter"}}
                        options={this.getOptions("regions")}
                        placeholder="Выберите регион"

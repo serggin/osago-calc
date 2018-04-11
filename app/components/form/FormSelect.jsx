@@ -16,7 +16,7 @@ class FormSelect extends BaseElement {
         return <div className="formElement" style={{overflow: "auto"}}>
             <div className="no-padding-left no-border col-lg-3">
               <label htmlFor={this.props.id} {...this.props.labelProps}>
-                {this.props.formlabel}
+                  <span id={this.props.metkaId}> {this.props.metkaFormLabel}</span> {this.props.formlabel}
             </label>
             </div>
 
@@ -30,6 +30,8 @@ class FormSelect extends BaseElement {
 FormSelect.propTypes = {
     assigned: PropTypes.func,
     formlabel: PropTypes.string,
+    metkaFormLabel:PropTypes.string,
+    metkaId:PropTypes.string,
     label: PropTypes.string,
     labelProps: PropTypes.object,
     divlabelProps: PropTypes.object,

@@ -80,5 +80,10 @@ select:disabled{
 div#osagoContent, div#osagoContent div{
   box-sizing: border-box;
 }
+#mainMetkaID{
+  color: #d60842;
+  font-weight: bold;
+  font-size: 2.0em;
+}
 
 

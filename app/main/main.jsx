@@ -42,7 +42,7 @@ var table = '<table>';
     table += '<td>'+(data.crime==false ? 'нет':'да')+'</td>';
     table += '<td>'+(data.limit==false ? 'нет':'да')+'</td>';
     table += '<td>'+(data.driving_experience ? data.driving_experience.label : '--')+'</td>';
-      table += '</tr>'
+      table += '</tr>';
 
       table += '<tr>';
         table += '<td colspan="3">Коэффициент</td>';
@@ -59,6 +59,10 @@ var table = '<table>';
 
       table += '</tr>'
 table +=    '</table>';
+
+var selected_city_html =    '<span style="color:red; ">'+(data.city ? data.city : '--')+'</span>';
+    var selected_region = data.regions ? data.regions : '--';
+    var selected_city = data.city ? data.city : '--';
 /*var colHeaders =['Владелец', 'Регистрация'];
 var tabData = [
     [data.owner=='fiz' ? 'Физ.л.':'Юр.л.',
@@ -77,7 +81,26 @@ var tabData = [
   if(document.getElementById('tariff_values')) {
     document.getElementById('tariff_values').value = data.factors.typeTC;
     document.getElementById('request_values').value = table;//document.getElementById('requestTable').innerHTML.toString();
+      document.getElementById('request_city').value = selected_city_html;
+      document.getElementById('request_region').value = selected_region;
     document.getElementById('premium_values').value = data.premium;
+      document.getElementById('submit_button2').style.display="none";
+      document.getElementById('calc_form').style.display="none";
+     /* document.getElementsByName('your-name').style.display='none';
+      document.getElementsByName('text-phone').style.display='none';
+      document.getElementsByName('your-email').style.display='none';*/
+
+      if(selected_region == 'Москва' || selected_region == 'Санкт-Петербург' || selected_region == 'Московская область' || selected_region == 'Ленинградская область'){
+         // if (selected_city == 'Москва' || selected_city == 'Санкт-Петербург') {
+          document.getElementById('submit_button2').style.display="block";
+          document.getElementById('calc_form').style.display="block";
+/*
+         document.getElementsByName('your-name').style.display='block';
+          document.getElementsByName('text-phone').style.display='block';
+          document.getElementsByName('your-email').style.display='block';*/
+       //   }
+
+      }
   }
 }
 ReactDOM.render(
